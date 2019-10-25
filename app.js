@@ -46,8 +46,9 @@ app.post('/addname', (req, res) => {
   });
 });
 
-app.use('/', (req, res) => {
-  res.sendFile('index.html', { root: __dirname });
+app.use(express.static(__dirname));// send the user to index html page inspite of the url
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, 'index.html'));
 });
 
 app.listen(port, () => {
